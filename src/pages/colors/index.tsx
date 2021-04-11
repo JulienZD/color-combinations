@@ -68,7 +68,11 @@ export default function Colors({ shared, initialColors = ['#000', '#fff'] }: Pro
             standards.
           </p>
         </article>
-        <PickableColors className="col-span-full sm:col-span-6 sm:ml-4 md:ml-16 lg:ml-40" />
+        <PickableColors
+          className="col-span-full sm:col-span-6 sm:ml-4 md:ml-16 lg:ml-40"
+          colors={colors}
+          onDelete={(color: string): void => console.log(`Deleting: ${color}`)}
+        />
         <div className="col-span-full">
           <ColorDeck cards={cardList} />
         </div>
