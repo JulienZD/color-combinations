@@ -4,7 +4,7 @@ import shuffle from '@lib/shuffle';
 
 interface Props {
   cards: JSX.Element[];
-  errorMsg: string;
+  errorMsg?: string;
 }
 
 export default function ColorDeck({ cards, errorMsg }: Props): JSX.Element {
@@ -13,16 +13,22 @@ export default function ColorDeck({ cards, errorMsg }: Props): JSX.Element {
   return (
     <>
       {cards.length > 0 && (
-        <LabeledCheckbox
-          id="shuffle"
-          name="doShuffle"
-          isChecked={doShuffle}
-          onChange={(e: ChangeEvent<HTMLInputElement>): void => setDoShuffle(e.target.checked)}
-          label="Shuffle output"
-        />
+        <div className="sticky top-0 w-full bg-primary z-50 py-2 flex justify-between">
+          <LabeledCheckbox
+            id="shuffle"
+            name="doShuffle"
+            isChecked={doShuffle}
+            onChange={(e: ChangeEvent<HTMLInputElement>): void => setDoShuffle(e.target.checked)}
+            label="Shuffle output"
+          />
+          {/*TODO: Implement onClick functionality*/}
+          <button>
+            <span className="material-icons">share</span>
+          </button>
+        </div>
       )}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4 rounded bg-gray-700 p-2">
-        {cards.length ? cardDeck : <p className="bg-primary text-center col-span-full">{errorMsg}</p>}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 rounded bg-gray-700 p-2">
+        {cards.length ? cardDeck : errorMsg && <p className="bg-primary text-center col-span-full">{errorMsg}</p>}
       </div>
     </>
   );
