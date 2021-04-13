@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef, ReactNode, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
-import { ButtonStyle, ConfirmButton } from '@components/buttons';
+import { Button, ButtonStyle } from '@components/buttons';
 
 interface Props {
   children?: ReactNode;
@@ -21,7 +21,12 @@ export const ConfirmableHexColorPicker = forwardRef<Ref, Props>(
           <HexColorPicker color={pickerColor} onChange={(newColor: string): void => setPickerColor(newColor)} />
           <div className="flex justify-between">
             <div className="flex-grow m-2 rounded" style={{ backgroundColor: pickerColor }} />
-            <ConfirmButton style={ButtonStyle.SECONDARY} onClick={(): void => onChange(pickerColor)} text={'Choose'} />
+            <Button
+              style={ButtonStyle.SECONDARY}
+              onClick={(): void => onChange(pickerColor)}
+              label="Select"
+              icon="check"
+            />
           </div>
         </div>
         <style jsx>{`
