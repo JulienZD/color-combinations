@@ -37,6 +37,11 @@ module.exports = {
   variants: {
     extend: {
       margin: ['first'],
+      opacity: ['group-focus'],
+      ringWidth: ['focus-visible'],
+      ringColor: ['focus-visible'],
+      inset: ['focus-within'],
+      translate: ['group-hover', 'group-focus', 'focus-within']
     },
   },
 };
