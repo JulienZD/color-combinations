@@ -24,7 +24,8 @@ export default function PickableColorSquare({ onDelete, initialColor = '#CCC' }:
         {isOpen && (
           <ConfirmableHexColorPicker
             ref={colorPickerRef}
-            onChange={(newColor: string): void => {
+            onCancel={close}
+            onSelection={(newColor: string): void => {
               setColor(newColor);
               close();
             }}
