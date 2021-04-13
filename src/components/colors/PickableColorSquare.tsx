@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { ConfirmableHexColorPicker } from '@components/colors/ConfirmableHexColorPicker';
+import { ColorPicker } from '@components/colors/ColorPicker';
 import useUnfocus from '@hooks/useUnfocus';
 
 interface Props {
@@ -22,7 +22,7 @@ export default function PickableColorSquare({ onDelete, initialColor = '#CCC' }:
           onClick={(): void => toggle(true)}
         />
         {isOpen && (
-          <ConfirmableHexColorPicker
+          <ColorPicker
             ref={colorPickerRef}
             onCancel={close}
             onSelection={(newColor: string): void => {

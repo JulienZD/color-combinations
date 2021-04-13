@@ -11,7 +11,7 @@ interface Props {
 export type Ref = HTMLDivElement;
 
 // TODO: position goes offscreen to the right on narrow viewports
-export const ConfirmableHexColorPicker = forwardRef<Ref, Props>(
+export const ColorPicker = forwardRef<Ref, Props>(
   ({ onSelection, color, onCancel }: Props, ref: ForwardedRef<Ref>) => {
     const [currentColor, setCurrentColor] = useState(color);
 
