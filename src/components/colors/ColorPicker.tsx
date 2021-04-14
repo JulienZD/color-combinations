@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
-import { Button, ButtonStyle } from '@components/buttons';
+import { Button, ButtonVariant } from '@components/buttons';
 
 interface Props {
   color: string;
@@ -22,9 +22,9 @@ export const ColorPicker = forwardRef<Ref, Props>(({ onSelection, color, onCance
           <div className="flex-grow w-5 ml-2 rounded" style={{ backgroundColor: currentColor }} />
         </div>
         <div className="flex justify-end items-center mt-3">
-          <Button style={ButtonStyle.OUTLINE} className="mr-2" onClick={(): void => onCancel()} label="Cancel" />
+          <Button variant={ButtonVariant.OUTLINE} className="mr-2" onClick={(): void => onCancel()} label="Cancel" />
           <Button
-            style={ButtonStyle.SECONDARY}
+            variant={ButtonVariant.SECONDARY}
             onClick={(): void => onSelection(currentColor)}
             label="Select"
             icon="check"
