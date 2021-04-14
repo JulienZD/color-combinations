@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Head from 'next/head';
 import Layout from '@components/layout';
-import PickableColors from '@components/colors/PickableColors';
+import SelectedColorsManager from '@components/colors/SelectedColorsManager';
 import ColorDeck from '@components/colors/ColorDeck';
 import { allColorCombinations } from '@lib/allCombinations';
 import ColorCard from '@components/colors/ColorCard';
@@ -20,12 +20,12 @@ function generateCards(hexColors: string[]): JSX.Element[] {
     ));
 }
 
-export default function Colors({ shared, initialColors = ['#000', '#fff'] }: Props): JSX.Element {
+export default function Colors({ shared, initialColors = ['#000', '#FFF'] }: Props): JSX.Element {
   const title = 'Preview Color Combinations';
   const [colors, setColors] = useState(initialColors);
-  // TODO: Remove temp list fill
-  useEffect(() => {
-    setColors(['#000', '#fff', '#c3c', '#aba', '#bad', '#111', '#222', '#333']);
+
+  const addColor = useCallback((newColor: string) => {
+    setColors((current) => (current?.includes(newColor) ? current : [...current, newColor]));
   }, []);
 
   const cardList = useMemo(() => generateCards(colors), [colors]);
@@ -68,9 +68,10 @@ export default function Colors({ shared, initialColors = ['#000', '#fff'] }: Pro
             standards.
           </p>
         </article>
-        <PickableColors
+        <SelectedColorsManager
           className="col-span-full sm:col-span-6 sm:ml-4 md:ml-16 lg:ml-40"
           colors={colors}
+          addColor={addColor}
           onDelete={(color: string): void => console.log(`Deleting: ${color}`)}
         />
         <div className="col-span-full">

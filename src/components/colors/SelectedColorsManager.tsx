@@ -1,12 +1,20 @@
 import SelectedColor from '@components/colors/SelectedColor';
+import NewColorOptions from '@components/colors/NewColorOptions';
+import { useCallback } from 'react';
 
 interface Props {
   colors: string[];
   onDelete: (color: string) => void;
   className?: string;
+  addColor: (newColor: string) => void;
 }
 
-export default function SelectedColorsManager({ colors, onDelete, className }: Props): JSX.Element {
+export default function SelectedColorsManager({ colors, onDelete, className, addColor }: Props): JSX.Element {
+  const newSelection = useCallback((newColor: string): void => addColor(newColor), []);
+
+  const importColors = useCallback((): void => {
+    alert('importing');
+  }, []);
   return (
     <fieldset className={className}>
       <legend className="mb-2">Select your colors</legend>
@@ -14,6 +22,7 @@ export default function SelectedColorsManager({ colors, onDelete, className }: P
         {colors.map((color) => (
           <SelectedColor key={color} initialColor={color} onDelete={onDelete} />
         ))}
+        <NewColorOptions onNewSelection={newSelection} onImport={importColors} />
       </div>
     </fieldset>
   );
