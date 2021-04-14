@@ -32,6 +32,10 @@ export default function Colors({ shared, initialColors = ['#000', '#FFF'] }: Pro
     setColors((current) => current.map((c) => (c === color ? newColor : c)));
   }, []);
 
+  const deleteColor = useCallback((color: string) => {
+    setColors((current) => current.filter((c) => c !== color));
+  }, []);
+
   const cardList = useMemo(() => generateCards(colors), [colors]);
   // noinspection HtmlRequiredTitleElement - title is set in Layout.tsx
   return (
@@ -76,7 +80,7 @@ export default function Colors({ shared, initialColors = ['#000', '#FFF'] }: Pro
           className="col-span-full sm:col-span-6 sm:ml-4 md:ml-16 lg:ml-40"
           colors={colors}
           addColor={addColor}
-          onDelete={(color: string): void => console.log(`Deleting: ${color}`)}
+          onDelete={deleteColor}
           updateColor={updateColor}
         />
         <div className="col-span-full">
