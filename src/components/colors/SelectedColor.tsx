@@ -7,7 +7,7 @@ interface Props {
   onDelete: (color: string) => void;
 }
 
-export default function PickableColorSquare({ onDelete, initialColor = '#CCC' }: Props): JSX.Element {
+export default function SelectedColor({ onDelete, initialColor = '#CCC' }: Props): JSX.Element {
   const [color, setColor] = useState(initialColor);
   const [isOpen, setIsOpen] = useState(false);
 
