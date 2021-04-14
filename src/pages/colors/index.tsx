@@ -28,6 +28,10 @@ export default function Colors({ shared, initialColors = ['#000', '#FFF'] }: Pro
     setColors((current) => (current?.includes(newColor) ? current : [...current, newColor]));
   }, []);
 
+  const updateColor = useCallback((color: string, newColor: string) => {
+    setColors((current) => current.map((c) => (c === color ? newColor : c)));
+  }, []);
+
   const cardList = useMemo(() => generateCards(colors), [colors]);
   // noinspection HtmlRequiredTitleElement - title is set in Layout.tsx
   return (
@@ -73,6 +77,7 @@ export default function Colors({ shared, initialColors = ['#000', '#FFF'] }: Pro
           colors={colors}
           addColor={addColor}
           onDelete={(color: string): void => console.log(`Deleting: ${color}`)}
+          updateColor={updateColor}
         />
         <div className="col-span-full">
           <ColorDeck cards={cardList} />

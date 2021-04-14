@@ -7,9 +7,16 @@ interface Props {
   onDelete: (color: string) => void;
   className?: string;
   addColor: (newColor: string) => void;
+  updateColor: (color: string, newColor: string) => void;
 }
 
-export default function SelectedColorsManager({ colors, onDelete, className, addColor }: Props): JSX.Element {
+export default function SelectedColorsManager({
+  colors,
+  onDelete,
+  updateColor,
+  className,
+  addColor,
+}: Props): JSX.Element {
   const newSelection = useCallback((newColor: string): void => addColor(newColor), []);
 
   const importColors = useCallback((): void => {
@@ -20,7 +27,7 @@ export default function SelectedColorsManager({ colors, onDelete, className, add
       <legend className="mb-2">Select your colors</legend>
       <div className="bg-gray-700 text-secondary-light px-1 py-2 rounded h-full grid content gap-y-2 grid-cols-2 sm:grid-cols-4 ">
         {colors.map((color) => (
-          <SelectedColor key={color} initialColor={color} onDelete={onDelete} />
+          <SelectedColor key={color} initialColor={color} onDelete={onDelete} onUpdate={updateColor} />
         ))}
         <NewColorOptions onNewSelection={newSelection} onImport={importColors} />
       </div>

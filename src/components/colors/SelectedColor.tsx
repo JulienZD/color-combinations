@@ -5,9 +5,10 @@ import useUnfocus from '@hooks/useUnfocus';
 interface Props {
   initialColor?: string;
   onDelete: (color: string) => void;
+  onUpdate: (color: string, newColor: string) => void;
 }
 
-export default function SelectedColor({ onDelete, initialColor = '#CCC' }: Props): JSX.Element {
+export default function SelectedColor({ onDelete, onUpdate, initialColor = '#CCC' }: Props): JSX.Element {
   const [color, setColor] = useState(initialColor);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -21,6 +22,11 @@ export default function SelectedColor({ onDelete, initialColor = '#CCC' }: Props
   const colorPickerRef = useRef<HTMLDivElement>(null);
   useUnfocus(colorPickerRef, close);
 
+  const updateColor = (newColor: string): void => {
+    onUpdate(color, newColor);
+    setColor(newColor);
+    close();
+  };
   return (
     <>
       <figure
@@ -37,17 +43,7 @@ export default function SelectedColor({ onDelete, initialColor = '#CCC' }: Props
           }}
           tabIndex={0}
         />
-        {isOpen && (
-          <ColorPicker
-            ref={colorPickerRef}
-            onCancel={close}
-            onSelection={(newColor: string): void => {
-              setColor(newColor);
-              close();
-            }}
-            color={color}
-          />
-        )}
+        {isOpen && <ColorPicker ref={colorPickerRef} onCancel={close} onSelection={updateColor} color={color} />}
         <footer className="flex justify-between">
           <figcaption>{color?.toUpperCase()}</figcaption>
           {/*TODO: display delete button on color square focus */}
