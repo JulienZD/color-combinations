@@ -1,6 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
-import { ColorPicker } from '@components/colors/ColorPicker';
-import useUnfocus from '@hooks/useUnfocus';
+import { useState } from 'react';
+import PopoverColorPicker from '@components/colors/PopoverColorPicker';
 
 interface Props {
   initialColor?: string;
@@ -10,31 +9,20 @@ interface Props {
 
 export default function SelectedColor({ onDelete, onUpdate, initialColor = '#CCC' }: Props): JSX.Element {
   const [color, setColor] = useState(initialColor);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const close = useCallback(() => setIsOpen(false), [isOpen]);
-
-  const colorPickerRef = useRef<HTMLDivElement>(null);
-  useUnfocus(colorPickerRef, close);
-
   const updateColor = (newColor: string): void => {
     onUpdate(color, newColor);
     setColor(newColor);
-    close();
   };
   return (
     <>
       <figure className="flex flex-col mx-1 relative h-32 group focus-visible:ring focus-visible:ring-blue-300">
-        <div
-          className="flex-grow cursor-pointer border border-secondary focus-visible:ring focus-visible:ring-blue-300"
-          style={{ backgroundColor: color }}
-          onClick={(): void => setIsOpen(true)}
-          onKeyDown={({ code }): void => {
-            if (code === 'Enter' || code === 'Space') setIsOpen(true);
-          }}
-          tabIndex={0}
-        />
-        {isOpen && <ColorPicker ref={colorPickerRef} onCancel={close} onSelection={updateColor} color={color} />}
+        <PopoverColorPicker className="flex-grow" color={color} onSelection={updateColor}>
+          <div
+            className="h-full cursor-pointer border border-secondary focus-visible:ring focus-visible:ring-blue-300"
+            style={{ backgroundColor: color }}
+            tabIndex={0}
+          />
+        </PopoverColorPicker>
         <footer className="flex justify-between">
           <figcaption>{color?.toUpperCase()}</figcaption>
           {/*TODO: display delete button on color square focus */}
