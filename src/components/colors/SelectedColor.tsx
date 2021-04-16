@@ -12,12 +12,7 @@ export default function SelectedColor({ onDelete, onUpdate, initialColor = '#CCC
   const [color, setColor] = useState(initialColor);
   const [isOpen, setIsOpen] = useState(false);
 
-  const squareRef = useRef<HTMLDivElement>(null);
-  const close = useCallback(() => {
-    setIsOpen(false);
-    // Refocus the square that opened
-    if (squareRef.current) squareRef.current.focus();
-  }, [isOpen]);
+  const close = useCallback(() => setIsOpen(false), [isOpen]);
 
   const colorPickerRef = useRef<HTMLDivElement>(null);
   useUnfocus(colorPickerRef, close);
@@ -29,11 +24,7 @@ export default function SelectedColor({ onDelete, onUpdate, initialColor = '#CCC
   };
   return (
     <>
-      <figure
-        ref={squareRef}
-        className="flex flex-col mx-1 relative h-32 group focus-visible:ring focus-visible:ring-blue-300"
-        tabIndex={0}
-      >
+      <figure className="flex flex-col mx-1 relative h-32 group focus-visible:ring focus-visible:ring-blue-300">
         <div
           className="flex-grow cursor-pointer border border-secondary focus-visible:ring focus-visible:ring-blue-300"
           style={{ backgroundColor: color }}
