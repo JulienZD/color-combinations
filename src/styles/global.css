@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1 {
+        @apply text-4xl;
+    }
+    h2 {
+        @apply text-3xl;
+    }
+    h3 {
+        @apply text-2xl;
+    }
+}
+
+html,
+body,
+#__next {
+    height: 100% !important;
+}
+
+#__next {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    @apply mx-auto flex flex-col;
+}
+
+.form-group {
+    @apply inline-flex flex-col mb-3;
+}
+
+textarea, input[type] {
+    @apply rounded bg-transparent border-secondary focus:border-current;
+}
+
+button:focus-visible {
+    @apply focus:ring focus:outline-none focus:ring-secondary;
+}
+
+.btn {
+    @apply mx-1 py-2 px-8 rounded transition-colors duration-300;
+}
+
+.btn-sm {
+    @apply px-2 py-1 text-sm;
+}
+
+.btn-outline {
+    @apply border bg-primary text-secondary border-secondary hover:bg-secondary hover:text-primary;
+}
+
+.btn-primary {
+    @apply border bg-secondary text-primary hover:bg-primary hover:text-secondary hover:border-secondary;
+}
