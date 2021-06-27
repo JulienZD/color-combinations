@@ -6,6 +6,11 @@ import ColorDeck from '@components/colors/ColorDeck';
 import { allColorCombinations } from '@lib/allCombinations';
 import ColorCard from '@components/colors/ColorCard';
 
+interface Props {
+  shared: boolean;
+  initialColors?: string[];
+}
+
 function generateCards(hexColors: string[]): JSX.Element[] {
   const colorCombinations = allColorCombinations(hexColors);
   return colorCombinations
@@ -15,9 +20,9 @@ function generateCards(hexColors: string[]): JSX.Element[] {
     ));
 }
 
-export default function Colors(): JSX.Element {
+export default function Colors({ shared, initialColors = ['#000', '#FFF'] }: Props): JSX.Element {
   const title = 'Preview Color Combinations';
-  const [colors, setColors] = useState(['#000000', '#00FF00']);
+  const [colors, setColors] = useState(initialColors);
 
   const addColor = useCallback((newColor: string) => {
     setColors((current) => (current?.includes(newColor) ? current : [...current, newColor]));
@@ -32,18 +37,19 @@ export default function Colors(): JSX.Element {
   }, []);
 
   const cardList = useMemo(() => generateCards(colors), [colors]);
-  // noinspection HtmlRequiredTitleElement - title is set in layout.tsx
+  // noinspection HtmlRequiredTitleElement - title is set in Layout.tsx
   return (
     <Layout title={title}>
       <Head>
         <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link
-          rel="preload"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.2.2/font/bootstrap-icons.css"
-          as="style"
-        />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.2.2/font/bootstrap-icons.css" />
+        {!shared && (
+          <meta
+            property="og:description"
+            content="View all combinations of your favorite colors in a simple overview."
+            key="og:description"
+          />
+        )}
       </Head>
       <h1 className="text-center mb-4">{title}</h1>
       <div className="container px-1 sm:px-0 mx-auto max-w-6xl grid grid-cols-8 gap-y-2">
