@@ -28,7 +28,7 @@ export default function Home({ shared, initialColors = ['#000', '#fff']}: Props)
       <div className="mx-auto max-w-6xl">
         <p className="mt-2 mb-2">
           View all combinations for any{' '}
-          <a className="link-animated-hover" href="https://en.wikipedia.org/wiki/Web_colors#Hex_triplet">
+          <a href="https://en.wikipedia.org/wiki/Web_colors#Hex_triplet">
             hex color values
           </a>{' '}
           you enter.
@@ -38,10 +38,7 @@ export default function Home({ shared, initialColors = ['#000', '#fff']}: Props)
         </p>
         <p>
           The preview filters out combinations with a contrast ratio that doesn't meet the{' '}
-          <a
-            className="link-animated-hover"
-            href="https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast"
-          >
+          <a href="https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast">
             <abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
           </a>{' '}
           standards.

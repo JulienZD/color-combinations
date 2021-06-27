@@ -56,3 +56,32 @@ button:focus-visible {
 .btn-primary {
     @apply border bg-secondary text-primary hover:bg-primary hover:text-secondary hover:border-secondary;
 }
+
+footer a{
+    @apply ml-4 first:ml-0;
+}
+
+a {
+    @apply inline-block no-underline rounded transition-colors duration-75 ease-linear;
+}
+
+p a {
+    @apply text-secondary;
+}
+
+a:not(.no-hover-underline)::after {
+    @apply relative rounded top-0.5 block w-full h-0.5 mx-auto my-0 bg-current transition-transform duration-150 ease-linear origin-center;
+    transform: scaleX(0);
+    content: '';
+}
+
+.group:hover a::after,
+.group:focus a::after,
+a:hover::after,
+a:focus::after {
+    transform: scaleX(1);
+}
+
+a::after {
+    @apply hover:scale-x-100
+}
