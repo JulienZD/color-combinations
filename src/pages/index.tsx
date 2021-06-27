@@ -26,23 +26,25 @@ export default function Home({ shared, initialColors = ['#000', '#fff']}: Props)
         )}
       </Head>
       <div className="mx-auto max-w-6xl">
-        <p className="mt-2 mb-2">
-          View all combinations for any{' '}
-          <a href="https://en.wikipedia.org/wiki/Web_colors#Hex_triplet">
-            hex color values
-          </a>{' '}
-          you enter.
-        </p>
-        <p className="mb-2">
-          The preview will automatically update as long as you enter more than two unique colors.
-        </p>
-        <p>
-          The preview filters out combinations with a contrast ratio that doesn't meet the{' '}
-          <a href="https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast">
-            <abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
-          </a>{' '}
-          standards.
-        </p>
+        <div className="sm:w-7/12 sm:mx-auto">
+          <p className="mt-2 mb-2">
+            View all combinations for any{' '}
+            <a href="https://en.wikipedia.org/wiki/Web_colors#Hex_triplet">
+              hex color values
+            </a>{' '}
+            you enter.
+          </p>
+          <p className="mb-2">
+            The preview will automatically update as long as you enter more than two unique colors.
+          </p>
+          <p>
+            The preview filters out combinations with a contrast ratio that doesn't meet the{' '}
+            <a href="https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast">
+              <abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
+            </a>{' '}
+            standards.
+          </p>
+        </div>
         <ColorPreviewer initialColors={initialColors} />
       </div>
     </Layout>
