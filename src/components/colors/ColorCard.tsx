@@ -46,7 +46,7 @@ function CardFooter({ colorCombination: { primary, secondary, contrast }, onClic
   }, [copyBtn]);
 
   return (
-    <div className="p-2 flex justify-between text-gray-300">
+    <div className="p-2 flex justify-between text-gray-900">
       <div className="flex flex-col">
         <ColorDescriptor text="Primary" color={primary} />
         <ColorDescriptor text="Secondary" color={secondary} />
