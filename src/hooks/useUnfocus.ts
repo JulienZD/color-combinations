@@ -1,30 +1,28 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-import {useEffect} from 'react';
+import { RefObject, useEffect } from 'react';
 
-// Improved version of https://codesandbox.io/s/opmco?file=/src/useClickOutside.js
-const useUnfocus = (ref, handler) => {
+// Improved version with keyboard support of https://codesandbox.io/s/opmco?file=/src/useClickOutside.js
+const useUnfocus = (ref: RefObject<HTMLElement>, handler: (event?: Event) => void): void => {
   useEffect(() => {
     let startedInside = false;
-    let startedWhenMounted = false;
+    let startedWhenMounted: HTMLElement | null;
 
-    const listener = (event) => {
+    const listener = (event: MouseEvent): void => {
       // Do nothing if `mousedown` or `touchstart` started inside ref element
       if (startedInside || !startedWhenMounted) return;
       // Do nothing if clicking ref's element or descendent elements
-      if (!ref.current || ref.current.contains(event.target)) return;
+      if (ref.current?.contains(event.target as Node)) return;
 
       handler(event);
     };
 
-    const keyboardListener = (event) => {
+    const keyboardListener = (event: KeyboardEvent): void => {
       if (event.code !== 'Escape') return;
       handler(event);
     };
 
-    const validateEventStart = (event) => {
+    const validateEventStart = (event: TouchEvent | MouseEvent): void => {
       startedWhenMounted = ref.current;
-      startedInside = ref.current && ref.current.contains(event.target);
+      startedInside = ref.current?.contains(event.target as Node) || false;
     };
 
     document.addEventListener('mousedown', validateEventStart);
@@ -32,7 +30,7 @@ const useUnfocus = (ref, handler) => {
     document.addEventListener('click', listener);
     document.addEventListener('keydown', keyboardListener);
 
-    return () => {
+    return (): void => {
       document.removeEventListener('mousedown', validateEventStart);
       document.removeEventListener('touchstart', validateEventStart);
       document.removeEventListener('click', listener);
