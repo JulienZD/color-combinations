@@ -1,13 +1,13 @@
-import Layout from "../components/layout";
-import Head from "next/head";
-import ColorPreviewer from "@components/colors/ColorPreviewer";
+import Layout from '../components/layout';
+import Head from 'next/head';
+import ColorPreviewer from '@components/colors/ColorPreviewer';
 
 interface Props {
   initialColors?: string[];
   shared: boolean;
 }
 
-export default function Home({ shared, initialColors = ['#000', '#fff']}: Props) {
+export default function Home({ shared, initialColors = ['#000', '#fff'] }: Props): JSX.Element {
   return (
     <Layout>
       <Head>
@@ -29,10 +29,7 @@ export default function Home({ shared, initialColors = ['#000', '#fff']}: Props)
         <div className="sm:w-7/12 sm:mx-auto">
           <p className="mt-2 mb-2">
             View all combinations for any{' '}
-            <a href="https://en.wikipedia.org/wiki/Web_colors#Hex_triplet">
-              hex color values
-            </a>{' '}
-            you enter.
+            <a href="https://en.wikipedia.org/wiki/Web_colors#Hex_triplet">hex color values</a> you enter.
           </p>
           <p className="mb-2">
             The preview will automatically update as long as you enter more than two unique colors.
@@ -48,5 +45,5 @@ export default function Home({ shared, initialColors = ['#000', '#fff']}: Props)
         <ColorPreviewer initialColors={initialColors} />
       </div>
     </Layout>
-  )
+  );
 }

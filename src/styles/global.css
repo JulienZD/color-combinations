@@ -6,9 +6,11 @@
     h1 {
         @apply text-4xl;
     }
+
     h2 {
         @apply text-3xl;
     }
+
     h3 {
         @apply text-2xl;
     }
@@ -57,7 +59,7 @@ button:focus-visible {
     @apply border bg-secondary text-primary hover:bg-primary hover:text-secondary hover:border-secondary;
 }
 
-footer a{
+footer a {
     @apply ml-4 first:ml-0;
 }
 

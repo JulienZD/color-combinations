@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-
 interface Props {
   children: ReactNode;
   title?: string;
@@ -25,9 +24,8 @@ function NavLink({ href, text, title, className = '' }: NavLinkProps): JSX.Eleme
   );
 }
 
-export default function Layout({ children, title = "Color Combinator" }: Props): JSX.Element {
-  const description =
-    "View all combinations of your favorite colors in a simple overview.";
+export default function Layout({ children, title = 'Color Combinator' }: Props): JSX.Element {
+  const description = 'View all combinations of your favorite colors in a simple overview.';
   return (
     <>
       <Head>
@@ -47,19 +45,13 @@ export default function Layout({ children, title = "Color Combinator" }: Props):
           <NavLink href="/" text="Color Combinator" title="Home" className="sm:text-2xl no-hover-underline" />
         </nav>
       </header>
-      <main className='container mb-4'>{children}</main>
+      <main className="container mb-4">{children}</main>
       <footer className="text-gray-700 mt-auto py-6 bg-gray-100">
         <div className="flex justify-between container">
           <p className="text-sm">
-            Created by{' '}
-            <a href="https://jzd.me/">
-            Julien Zapata Duque
-            </a>
+            Created by <a href="https://jzd.me/">Julien Zapata Duque</a>
           </p>
-
-          <a href="https://github.com/JulienZD/color-combinations">
-            Source
-          </a>
+          <a href="https://github.com/JulienZD/color-combinations">Source</a>
         </div>
       </footer>
     </>
