@@ -10,7 +10,7 @@ interface Props {
   onClose: () => void;
 }
 
-// Immproved component of https://codesandbox.io/s/opmco?file=/src/PopoverPicker.js
+// Improved component of https://codesandbox.io/s/opmco?file=/src/PopoverPicker.js
 export default function PopoverPicker({ color, onChange, onClose }: Props): JSX.Element {
   const popover = useRef<HTMLDivElement>(null);
   const [isOpen, toggle] = useState(false);
