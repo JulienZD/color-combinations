@@ -35,7 +35,7 @@ export default function Home({ shared, initialColors = ['#000', '#fff'] }: Props
             The preview will automatically update as long as you enter more than two unique colors.
           </p>
           <p>
-            The preview filters out combinations with a contrast ratio that doesn't meet the{' '}
+            The preview filters out combinations with a contrast ratio that doesn&apos;t meet the{' '}
             <a href="https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast">
               <abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
             </a>{' '}

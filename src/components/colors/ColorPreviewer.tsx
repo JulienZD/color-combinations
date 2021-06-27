@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import ColorForm from './ColorForm';
 import ColorDeck from './ColorDeck';
 import ColorCard from './ColorCard';
@@ -27,12 +27,14 @@ export default function ColorPreviewer({ initialColors }: Props): JSX.Element {
     .split('\n')
     .filter((c) => c.match(/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/));
 
-  const urlColors = (): string => hexColors.map((c) => c.replace('#', '')).join('-');
+  const urlColors = useCallback(() => {
+    return hexColors.map((c) => c.replace('#', '')).join('-');
+  }, [hexColors]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     window.history.replaceState(window.history.state, '', `/colors/${urlColors()}`);
-  }, [hexColors]);
+  }, [hexColors, urlColors]);
 
   const cardList = useMemo(() => generateCards(hexColors), [hexColors]);
 

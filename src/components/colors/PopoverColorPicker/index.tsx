@@ -18,7 +18,7 @@ export default function PopoverPicker({ color, onChange, onClose }: Props): JSX.
   const close = useCallback(() => {
     onClose();
     toggle(false);
-  }, [color]);
+  }, [onClose]);
 
   useUnfocus(popover, close);
 
