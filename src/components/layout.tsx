@@ -18,7 +18,7 @@ interface NavLinkProps {
 function NavLink({ href, text, title, className = '' }: NavLinkProps): JSX.Element {
   return (
     <Link href={href}>
-      <a className={`${className} link-animated-hover first:ml-0 last:mr-0 mx-2`} title={title ?? text}>
+      <a className={`${className} first:ml-0 last:mr-0 mx-2`} title={title ?? text}>
         {text}
       </a>
     </Link>
@@ -44,15 +44,19 @@ export default function Layout({ children, title = "Color Combinator" }: Props):
       </Head>
       <header className="container my-8 font-semibold text-lg">
         <nav className="flex justify-between">
-          <NavLink href="/" text="Color Combinator" title="Home" className="sm:text-2xl" />
-          <div className="flex justify-around">
-            <NavLink href="https://jzd.me/about" text="About me" />
-          </div>
+          <NavLink href="/" text="Color Combinator" title="Home" className="sm:text-2xl no-hover-underline" />
         </nav>
       </header>
-      <main className='container'>{children}</main>
-      <footer className="container mt-auto">
-        <div className="flex justify-end">
+      <main className='container mb-4'>{children}</main>
+      <footer className="text-gray-700 mt-auto py-6 bg-gray-100">
+        <div className="flex justify-between container">
+          <p className="text-sm">
+            Created by{' '}
+            <a href="https://jzd.me/">
+            Julien Zapata Duque
+            </a>
+          </p>
+
           <a href="https://github.com/JulienZD/color-combinations">
             Source
           </a>
