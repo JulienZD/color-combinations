@@ -43,6 +43,7 @@ export default function Layout({ children, title = 'Color Combinator' }: Props):
       <header className="container my-8 font-semibold text-lg">
         <nav className="flex justify-between">
           <NavLink href="/" text="Color Combinator" title="Home" className="sm:text-2xl no-hover-underline" />
+          <ThemeSwitcher />
         </nav>
       </header>
       <main className="container mb-4">{children}</main>
