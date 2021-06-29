@@ -6,5 +6,9 @@ export default function ThemeSwitcher(): JSX.Element | null {
   const swap = useCallback(() => {
     if (swapTheme) swapTheme();
   }, [swapTheme]);
-  return theme ? <button onClick={swap}>{theme === 'dark' ? 'Light' : 'Dark'} mode</button> : null;
+  return theme ? (
+    <button className="dark:text-dark-secondary-400" onClick={swap}>
+      {theme === 'dark' ? 'Light' : 'Dark'} mode
+    </button>
+  ) : null;
 }

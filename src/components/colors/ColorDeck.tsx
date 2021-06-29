@@ -21,8 +21,8 @@ export default function ColorDeck({ cards, errorMsg }: Props): JSX.Element {
           label="Shuffle output"
         />
       )}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4 rounded bg-gray-200 p-2">
-        {cards.length ? cardDeck : <p className="bg-primary text-center col-span-full">{errorMsg}</p>}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4 rounded bg-primary-200 dark:bg-dark-primary-700 p-2">
+        {cards.length ? cardDeck : <p className="text-center col-span-full">{errorMsg}</p>}
       </div>
     </>
   );

@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const colors = require('tailwindcss/colors');
 module.exports = {
   mode: 'jit',
   plugins: [require('@tailwindcss/forms')],
@@ -13,8 +15,24 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: 'white',
-        secondary: '#2563EB',
+        primary: {
+          DEFAULT: 'white',
+          100: colors.coolGray['100'],
+          200: colors.coolGray['200'],
+          300: colors.coolGray['300'],
+          400: colors.coolGray['400'],
+          500: colors.coolGray['500'],
+          600: colors.coolGray['600'],
+          700: colors.coolGray['700'],
+          800: colors.coolGray['800'],
+          900: colors.coolGray['900'],
+        },
+        secondary: colors.blue,
+        dark: {
+          primary: colors.gray,
+          secondary: colors.teal,
+          special: '#EDAE49',
+        },
       },
     },
   },

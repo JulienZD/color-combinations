@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import ThemeSwitcher from '@components/ThemeSwitcher';
 
 interface Props {
   children: ReactNode;
@@ -42,15 +43,23 @@ export default function Layout({ children, title = 'Color Combinator' }: Props):
       </Head>
       <header className="container my-8 font-semibold text-lg">
         <nav className="flex justify-between">
-          <NavLink href="/" text="Color Combinator" title="Home" className="sm:text-2xl no-hover-underline" />
+          <NavLink
+            href="/"
+            text="Color Combinator"
+            title="Home"
+            className="sm:text-2xl no-hover-underline dark:text-dark-secondary-400"
+          />
           <ThemeSwitcher />
         </nav>
       </header>
       <main className="container mb-4">{children}</main>
-      <footer className="text-gray-700 mt-auto py-6 bg-gray-100">
+      <footer className="mt-auto py-6 text-primary-700 bg-primary-100 dark:bg-dark-primary-700 dark:text-dark-primary-100">
         <div className="flex justify-between container">
           <p className="text-sm">
-            Created by <a href="https://jzd.me/">Julien Zapata Duque</a>
+            Created by{' '}
+            <a className="dark:text-dark-special" href="https://jzd.me/">
+              Julien Zapata Duque
+            </a>
           </p>
           <a href="https://github.com/JulienZD/color-combinations">Source</a>
         </div>
