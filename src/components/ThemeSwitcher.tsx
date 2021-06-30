@@ -7,8 +7,12 @@ export default function ThemeSwitcher(): JSX.Element | null {
     if (swapTheme) swapTheme();
   }, [swapTheme]);
   return theme ? (
-    <button className="dark:text-dark-secondary-400" onClick={swap}>
-      {theme === 'dark' ? 'Light' : 'Dark'} mode
+    <button
+      className="dark:text-dark-secondary-400"
+      onClick={swap}
+      aria-label={`Activate ${theme === 'dark' ? 'light' : 'dark'} mode`}
+    >
+      <i className={`text-3xl bi bi-${theme === 'dark' ? 'sun' : 'moon-fill'}`} />
     </button>
   ) : null;
 }
