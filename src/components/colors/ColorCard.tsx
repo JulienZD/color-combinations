@@ -46,17 +46,22 @@ function CardFooter({ colorCombination: { primary, secondary, contrast }, onClic
   }, [copyBtn]);
 
   return (
-    <div className="p-2 flex justify-between text-gray-900">
+    <div className="p-2 flex justify-between">
       <div className="flex flex-col">
         <ColorDescriptor text="Primary" color={primary} />
         <ColorDescriptor text="Secondary" color={secondary} />
         <small>Contrast Ratio: {contrast}</small>
       </div>
       <div className="flex justify-end text-secondary">
-        <button title={copyBtn.title} className="btn-link btn btn-sm" onClick={toClipboard} aria-label={copyBtn.title}>
+        <button
+          title={copyBtn.title}
+          className="btn btn-sm hover-themed"
+          onClick={toClipboard}
+          aria-label={copyBtn.title}
+        >
           <i className={`bi bi-${copyBtn.icon}`} />
         </button>
-        <button className="btn btn-sm btn-link" onClick={onClick} aria-label="Invert colors">
+        <button className="btn btn-sm hover-themed" onClick={onClick} aria-label="Invert colors">
           <i className="bi bi-circle-half" />
         </button>
       </div>

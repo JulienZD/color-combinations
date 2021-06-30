@@ -31,7 +31,7 @@ export default function PopoverPicker({ color, onChange, onClose }: Props): JSX.
   return (
     <div className={styles.picker}>
       <div
-        className={`${styles.swatch} focus:ring-2 focus:ring-secondary`}
+        className={`${styles.swatch} border-2 border-themed focus-visible:ring-2 focus-visible:ring-secondary-600 dark:focus-visible:ring-dark-secondary-400`}
         style={{ backgroundColor: color }}
         tabIndex={0}
         role="button"
