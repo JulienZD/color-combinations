@@ -29,8 +29,9 @@ export default function SelectedColor({ onDelete, onUpdate, initialColor = '#CCC
           {/*TODO: move animation to separate class */}
           <button
             className={`opacity-0 translate-x-2 group-hover:translate-x-0 focus-within:translate-x-0 group-focus:translate-x-0
-             focus-within:opacity-100 group-hover:opacity-100 group-focus:opacity-100 transform transition-all duration-300`}
+             focus-within:opacity-100 group-hover:opacity-100 group-focus:opacity-100 transform transition-all duration-300 hover-themed`}
             onClick={(): void => onDelete(color)}
+            title={`Remove ${color}`}
           >
             <span className="material-icons">delete</span>
           </button>
