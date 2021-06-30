@@ -63,7 +63,7 @@ function CardFooter({ colorCombination, swapTheme, setCardTheme, resetTheme }: C
   }, [copyBtn]);
 
   return (
-    <div className="p-2 flex justify-between text-gray-900">
+    <div className="p-2 flex justify-between">
       <div className="flex flex-col">
         <ColorDescriptor
           text="Primary"
@@ -90,13 +90,18 @@ function CardFooter({ colorCombination, swapTheme, setCardTheme, resetTheme }: C
         <small>Contrast Ratio: {contrast}</small>
       </div>
       <div className="flex justify-end" style={{ color: 'var(--main-text)' }}>
-        <button title={copyBtn.title} className="btn-link btn btn-sm" onClick={toClipboard} aria-label={copyBtn.title}>
+        <button
+          title={copyBtn.title}
+          className="btn btn-sm hover-themed"
+          onClick={toClipboard}
+          aria-label={copyBtn.title}
+        >
           <i className={`bi bi-${copyBtn.icon}`} />
         </button>
-        <button className="btn btn-sm btn-link" onClick={swapTheme} aria-label="Invert colors">
+        <button className="btn btn-sm hover-themed" onClick={swapTheme} aria-label="Invert colors">
           <i className="bi bi-circle-half" />
         </button>
-        <button className="btn btn-sm btn-link" onClick={resetTheme} aria-label="Invert colors">
+        <button className="btn btn-sm hover-themed" onClick={resetTheme} aria-label="Reset colors">
           <i className="bi bi-arrow-counterclockwise" />
         </button>
       </div>
@@ -135,9 +140,9 @@ export default function ColorCard(props: ColorCombination): JSX.Element {
     <article className="m-1">
       <div className="p-2 rounded-md" style={{ backgroundColor: primary, color: secondary }}>
         <hgroup>
-          <h1>Heading 1</h1>
-          <h2>Heading 2</h2>
-          <h3>Heading 3</h3>
+          <p className="text-4xl">Heading 1</p>
+          <p className="text-3xl">Heading 2</p>
+          <p className="text-2xl">Heading 3</p>
         </hgroup>
         <p>The quick brown fox jumps over the lazy dog</p>
         <div className="flex mt-1">

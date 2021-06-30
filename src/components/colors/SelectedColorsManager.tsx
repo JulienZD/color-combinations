@@ -1,6 +1,6 @@
 import SelectedColor from '@components/colors/SelectedColor';
 import NewColorOptions from '@components/colors/NewColorOptions';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 interface Props {
   colors: string[];
@@ -17,6 +17,17 @@ export default function SelectedColorsManager({
   className,
   addColor,
 }: Props): JSX.Element {
+  const hexColors = colors.filter((c) => c.match(/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/));
+
+  const urlColors = useCallback(() => {
+    return hexColors.map((c) => c.replace('#', '')).join('-');
+  }, [hexColors]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.history.replaceState(window.history.state, '', `/colors/${urlColors()}`);
+  }, [hexColors, urlColors]);
+
   const newSelection = useCallback((newColor: string): void => addColor(newColor), []);
 
   const importColors = useCallback((): void => {
@@ -25,7 +36,7 @@ export default function SelectedColorsManager({
   return (
     <fieldset className={className}>
       <legend className="mb-2">Select your colors</legend>
-      <div className="bg-gray-200 text-secondary-light px-1 py-2 rounded h-full grid content gap-y-2 grid-cols-2 sm:grid-cols-4 ">
+      <div className="bg-primary-200 dark:bg-dark-primary-700 px-1 py-2 rounded h-full grid content gap-y-2 grid-cols-2 sm:grid-cols-4 ">
         {colors.map((color) => (
           <SelectedColor key={color} initialColor={color} onDelete={onDelete} onUpdate={updateColor} />
         ))}

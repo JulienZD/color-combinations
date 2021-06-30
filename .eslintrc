@@ -12,6 +12,6 @@
   "parserOptions": {
     "ecmaVersion": 2021
   },
-  "extends": ["plugin:@typescript-eslint/recommended", "plugin:@next/next/recommended", "prettier"],
+  "extends": ["plugin:@typescript-eslint/recommended", "plugin:@next/next/recommended", "prettier", "next"],
   "ignorePatterns": [".next/*", "out/*"]
 }

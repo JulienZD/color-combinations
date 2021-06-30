@@ -13,7 +13,7 @@ export default function ColorDeck({ cards, errorMsg }: Props): JSX.Element {
   return (
     <>
       {cards.length > 0 && (
-        <div className="sticky top-0 w-full bg-primary z-50 py-2 flex justify-between">
+        <div className="sticky top-0 w-full bg-primary dark:bg-dark-primary-900 z-50 py-2 flex justify-between">
           <LabeledCheckbox
             id="shuffle"
             name="doShuffle"
@@ -27,7 +27,7 @@ export default function ColorDeck({ cards, errorMsg }: Props): JSX.Element {
           </button>
         </div>
       )}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 rounded bg-gray-200 p-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 rounded bg-primary-200 dark:bg-dark-primary-700 p-2">
         {cards.length ? cardDeck : errorMsg && <p className="bg-primary text-center col-span-full">{errorMsg}</p>}
       </div>
     </>

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-
+import ThemeSwitcher from '@components/ThemeSwitcher';
 
 interface Props {
   children: ReactNode;
@@ -18,16 +18,15 @@ interface NavLinkProps {
 function NavLink({ href, text, title, className = '' }: NavLinkProps): JSX.Element {
   return (
     <Link href={href}>
-      <a className={`${className} link-animated-hover first:ml-0 last:mr-0 mx-2`} title={title ?? text}>
+      <a className={`${className} first:ml-0 last:mr-0 mx-2`} title={title ?? text}>
         {text}
       </a>
     </Link>
   );
 }
 
-export default function Layout({ children, title = "Color Combinator" }: Props): JSX.Element {
-  const description =
-    "View all combinations of your favorite colors in a simple overview.";
+export default function Layout({ children, title = 'Color Combinator' }: Props): JSX.Element {
+  const description = 'View all combinations of your favorite colors in a simple overview.';
   return (
     <>
       <Head>
@@ -44,18 +43,25 @@ export default function Layout({ children, title = "Color Combinator" }: Props):
       </Head>
       <header className="container my-8 font-semibold text-lg">
         <nav className="flex justify-between">
-          <NavLink href="/" text="Color Combinator" title="Home" className="sm:text-2xl" />
-          <div className="flex justify-around">
-            <NavLink href="https://jzd.me/about" text="About me" />
-          </div>
+          <NavLink
+            href="/"
+            text="Color Combinator"
+            title="Home"
+            className="sm:text-2xl no-hover-underline dark:text-dark-secondary-400"
+          />
+          <ThemeSwitcher />
         </nav>
       </header>
-      <main className='container'>{children}</main>
-      <footer className="container mt-auto">
-        <div className="flex justify-end">
-          <a href="https://github.com/JulienZD/color-combinations">
-            Source
-          </a>
+      <main className="container mb-4">{children}</main>
+      <footer className="mt-auto py-6 text-primary-700 bg-primary-100 dark:bg-dark-primary-700 dark:text-dark-primary-100">
+        <div className="flex justify-between container">
+          <p className="text-sm">
+            Created by{' '}
+            <a className="dark:text-dark-special" href="https://jzd.me/">
+              Julien Zapata Duque
+            </a>
+          </p>
+          <a href="https://github.com/JulienZD/color-combinations">Source</a>
         </div>
       </footer>
     </>

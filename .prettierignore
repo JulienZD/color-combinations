@@ -1,6 +1,5 @@
 .next/
 build/
-.netlify/
 out/
 node_modules/
 public/

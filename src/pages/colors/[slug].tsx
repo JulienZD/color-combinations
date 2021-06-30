@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import Colors from './index';
+import Colors from '../index';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-export default function slug(): JSX.Element {
+export default function Slug(): JSX.Element {
   const [colors, setColors] = useState<string[] | null>(null);
   const router = useRouter();
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function slug(): JSX.Element {
     const importedColors = tryImportColors(router.query.slug as string);
     if (!importedColors) return;
     setColors(importedColors);
-  }, [router.isReady]);
+  }, [router.isReady, router.query.slug]);
   return (
     <>
       <Head>

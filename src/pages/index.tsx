@@ -15,9 +15,13 @@ function generateCards(hexColors: string[]): JSX.Element[] {
     ));
 }
 
-export default function Colors(): JSX.Element {
-  const title = 'Preview Color Combinations';
-  const [colors, setColors] = useState(['#000000', '#00FF00']);
+interface Props {
+  initialColors?: string[];
+  shared: boolean;
+}
+
+export default function Colors({ shared, initialColors = ['#000', '#fff'] }: Props): JSX.Element {
+  const [colors, setColors] = useState(initialColors);
 
   const addColor = useCallback((newColor: string) => {
     setColors((current) => (current?.includes(newColor) ? current : [...current, newColor]));
@@ -34,18 +38,24 @@ export default function Colors(): JSX.Element {
   const cardList = useMemo(() => generateCards(colors), [colors]);
   // noinspection HtmlRequiredTitleElement - title is set in layout.tsx
   return (
-    <Layout title={title}>
+    <Layout>
       <Head>
+        {!shared && (
+          <meta
+            property="og:description"
+            content="View all combinations of your favorite colors in a simple overview."
+            key="og:description"
+          />
+        )}
         <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link
           rel="preload"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.2.2/font/bootstrap-icons.css"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
           as="style"
         />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.2.2/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
       </Head>
-      <h1 className="text-center mb-4">{title}</h1>
       <div className="container px-1 sm:px-0 mx-auto max-w-6xl grid grid-cols-8 gap-y-2">
         <article className="col-span-full sm:col-span-2">
           {/*TODO: Update explanation*/}
@@ -60,11 +70,8 @@ export default function Colors(): JSX.Element {
             The preview will automatically update as long as you enter more than two unique colors.
           </p>
           <p>
-            The preview filters out combinations with a contrast ratio that doesn't meet the{' '}
-            <a
-              className="link-animated-hover"
-              href="https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast"
-            >
+            The preview filters out combinations with a contrast ratio that doesn&apos;t meet the{' '}
+            <a href="https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast">
               <abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
             </a>{' '}
             standards.
