@@ -1,5 +1,5 @@
-import { ReactNode, useCallback, useRef, useState, KeyboardEvent } from 'react';
-import { ColorPicker } from '@components/colors/ColorPicker';
+import { KeyboardEvent, ReactNode, useRef, useState } from 'react';
+import ColorPicker from '@components/colors/ColorPicker';
 import useUnfocus from '@hooks/useUnfocus';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 export default function PopoverColorPicker({ color, onSelection, children, className }: Props): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-  const close = useCallback((): void => setIsOpen(false), [isOpen]);
+  const close = (): void => setIsOpen(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   useUnfocus(wrapperRef, close);
 
