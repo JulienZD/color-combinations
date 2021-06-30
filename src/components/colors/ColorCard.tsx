@@ -1,4 +1,4 @@
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useEffect, useState } from 'react';
 import { ColorCombination } from 'types';
 import PopoverColorPicker from '@components/colors/PopoverColorPicker';
 import calcContrast from '@lib/calcContrast';
@@ -13,7 +13,7 @@ interface CardFooterProps {
 function OutlinedButton({ color }: { color: string }): JSX.Element {
   return (
     <div
-      className="btn btn-sm select-none cursor-pointer first:ml-0 mr-1 focus:ring-0 focus:ring-transparent"
+      className="btn btn-sm select-none first:ml-0 mr-1 focus:ring-0 focus:ring-transparent"
       style={{ color: color, border: `1px solid ${color}` }}
       tabIndex={-1}
     >
@@ -49,7 +49,7 @@ function ColorDescriptor({
 
 function CardFooter({ colorCombination, swapTheme, setCardTheme, resetTheme }: CardFooterProps): JSX.Element {
   const { primary, secondary, contrast } = colorCombination;
-  const [copyBtn, setCopyBtnText] = useState({ icon: 'clipboard', title: 'Copy to clipboard' });
+  const [copyBtn, setCopyBtnText] = useState({ icon: 'clipboard', title: 'Copy CSS to clipboard' });
   const toClipboard = async (): Promise<void> => {
     if (copyBtn.icon !== 'clipboard') return;
     await navigator.clipboard.writeText(`background-color: ${primary};\ncolor: ${secondary};`);
@@ -58,7 +58,7 @@ function CardFooter({ colorCombination, swapTheme, setCardTheme, resetTheme }: C
 
   useEffect(() => {
     if (copyBtn.icon === 'clipboard') return;
-    const timeout = setTimeout(() => setCopyBtnText({ icon: 'clipboard', title: 'Copy to clipboard' }), 2000);
+    const timeout = setTimeout(() => setCopyBtnText({ icon: 'clipboard', title: 'Copy CSS to clipboard' }), 2000);
     return (): void => clearTimeout(timeout);
   }, [copyBtn]);
 
@@ -89,7 +89,7 @@ function CardFooter({ colorCombination, swapTheme, setCardTheme, resetTheme }: C
         />
         <small>Contrast Ratio: {contrast}</small>
       </div>
-      <div className="flex justify-end" style={{ color: 'var(--main-text)' }}>
+      <div className="flex justify-end">
         <button
           title={copyBtn.title}
           className="btn btn-sm hover-themed"
@@ -98,10 +98,10 @@ function CardFooter({ colorCombination, swapTheme, setCardTheme, resetTheme }: C
         >
           <i className={`bi bi-${copyBtn.icon}`} />
         </button>
-        <button className="btn btn-sm hover-themed" onClick={swapTheme} aria-label="Invert colors">
+        <button className="btn btn-sm hover-themed" onClick={swapTheme}  title="Invert colors" aria-label="Invert colors">
           <i className="bi bi-circle-half" />
         </button>
-        <button className="btn btn-sm hover-themed" onClick={resetTheme} aria-label="Reset colors">
+        <button className="btn btn-sm hover-themed" onClick={resetTheme} title="Reset colors" aria-label="Reset colors">
           <i className="bi bi-arrow-counterclockwise" />
         </button>
       </div>
@@ -148,7 +148,7 @@ export default function ColorCard(props: ColorCombination): JSX.Element {
         <div className="flex mt-1">
           <OutlinedButton color={secondary} />
           <div
-            className="btn btn-sm mr-1 select-none cursor-pointer"
+            className="btn btn-sm mr-1 select-none"
             style={{ backgroundColor: secondary, color: primary }}
             tabIndex={-1}
           >
