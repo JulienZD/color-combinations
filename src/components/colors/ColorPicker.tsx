@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { useClampInsideViewport } from '@hooks/useClampInsideViewport';
 
@@ -11,14 +11,13 @@ interface Props {
 // TODO: position goes offscreen to the right on narrow viewports
 export default function ColorPicker({ onSelection, color, onCancel }: Props): JSX.Element {
   const [currentColor, setCurrentColor] = useState(color);
-  const ref = useRef<HTMLDivElement>(null);
-  const [isOutsideViewport] = useClampInsideViewport(ref);
+  const [ref, isOutsideViewport] = useClampInsideViewport<HTMLDivElement>();
 
   return (
     <div
       ref={ref}
-      className={`opacity-0 ${
-        isOutsideViewport ? '!right-12 !opacity-100' : '!opacity-100'
+      className={`${
+        isOutsideViewport ? 'sm:!right-12' : ''
       } fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:transform-none sm:absolute sm:inset-auto flex flex-col z-[60] p-4 pb-2 shadow-sharp rounded-r-lg rounded-b-lg border border-transparent dark:border-dark-primary-400 bg-primary-100 dark:bg-dark-primary-600`}
     >
       <div className="flex">

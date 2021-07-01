@@ -1,10 +1,12 @@
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useLayoutEffect, useRef, useState } from 'react';
 
 // TODO: add parameters with which classes to set if el is outside viewport
 //  for example: !right-12 opacity-100
-export function useClampInsideViewport(ref: RefObject<HTMLElement>): boolean[] {
+export function useClampInsideViewport<T extends HTMLElement>(): [RefObject<T>, boolean] {
+  const ref = useRef<T>(null);
   const [isOutsideViewport, setIsOutsideViewport] = useState(false);
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     function clampViewPort(): void {
       if (!ref.current) return;
       const viewWidth = window.innerWidth;
@@ -23,7 +25,7 @@ export function useClampInsideViewport(ref: RefObject<HTMLElement>): boolean[] {
     window.addEventListener('resize', debounceClampViewPort);
 
     return (): void => window.removeEventListener('resize', debounceClampViewPort);
-  }, [ref]);
+  }, []);
 
-  return [isOutsideViewport];
+  return [ref, isOutsideViewport];
 }
