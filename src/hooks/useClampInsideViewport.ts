@@ -9,7 +9,7 @@ export function useClampInsideViewport<T extends HTMLElement>(): [RefObject<T>, 
   useLayoutEffect(() => {
     function clampViewPort(): void {
       if (!ref.current) return;
-      const viewWidth = window.innerWidth;
+      const viewWidth = Math.min(document.documentElement.clientWidth, window.innerWidth);
       const bounds = ref.current.getBoundingClientRect();
 
       setIsOutsideViewport(bounds.right > viewWidth);
